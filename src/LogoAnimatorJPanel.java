@@ -119,58 +119,57 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 		System.out.println("x: " + x + ", y: " + y + ", currentImage: " + currentImage);
         System.out.println("Car Direction: " + carDirection1 + "\n");
 
-        if (e.getKeyCode() == 38) {
-            x-=5;
-        }
-        if (e.getKeyCode() == 87) {
-            x1-=5;
-        }
-//		switch(e.getKeyCode()) {
-//			// Left key
-//	    	case 37:
-//	    		// Change car turning image
-//	    		if (currentImage > 0) {
-//                    currentImage -= 1;
-//                }
-//	    		else {
-//                    currentImage=15;
-//                }
-//                carDirecwtion1 -= 1;
-//                if  (carDirection1 < 0) {
-//                    carDirection1 = 15;
-//                }
-//
-//                // Turn car direction
-//                carTurn();
-//	    		break;
-//	    	// Up key
-//	    	case 38:
-//                x-=5;
-//	    		break;
-//	    	// Right key
-//	    	case 39:
-//	    		// Change car turning image
-//	    		if (currentImage != 15) {
-//                    currentImage += 1;
-//                }
-//	    		else {
-//                    currentImage=0;
-//                }
-//                carDirection1 += 1;
-//                if  (carDirection1 == 16) {
-//                    carDirection1 = 0;
-//                }
-//                carTurn();
-//
-//                break;
-//	    	// Down key
-//	    	case 40:
-//	    		x+=5;
-//	    		break;
-//	    	case 87:
-//	    		x1-=5;
-//	    		break;
-//	    }
+//        if (e.getKeyCode() == 38) {
+//            x-=5;
+//        }
+//        if (e.getKeyCode() == 87) {
+//            x1-=5;
+//        }
+		switch(e.getKeyCode()) {
+			// Left key
+	    	case 37:
+	    		// Change car turning image
+	    		if (currentImage > 0) {
+                    currentImage -= 1;
+                }
+	    		else {
+                    currentImage=15;
+                }
+                if  (carDirection1 < 0) {
+                    carDirection1 = 15;
+                }
+
+                // Turn car direction
+                carTurn();
+	    		break;
+	    	// Up key
+	    	case 38:
+                x-=5;
+	    		break;
+	    	// Right key
+	    	case 39:
+	    		// Change car turning image
+	    		if (currentImage != 15) {
+                    currentImage += 1;
+                }
+	    		else {
+                    currentImage=0;
+                }
+                carDirection1 += 1;
+                if  (carDirection1 == 16) {
+                    carDirection1 = 0;
+                }
+                carTurn();
+
+                break;
+	    	// Down key
+	    	case 40:
+	    		x+=5;
+	    		break;
+	    	case 87:
+	    		x1-=5;
+	    		break;
+	    }
 	}
 
 	@Override
