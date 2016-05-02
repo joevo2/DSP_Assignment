@@ -104,6 +104,8 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
 	private class TimerHandler implements ActionListener {
 		 public void actionPerformed( ActionEvent actionEvent) {
              // collison for car1
+
+             // outer boundary
              if (x < 50) {
                  velX = 0;
                  x = 50;
@@ -122,6 +124,14 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
              if (y > 550) {
                  velY = 0;
                  y = 550;
+             }
+
+             // inner grass bottom boundary
+             if (x < 700 && x > 100) {
+                 if (y < 500) {
+                     velY = 0;
+                     y = 500;
+                 }
              }
 
              x = x + velX;
@@ -143,7 +153,7 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
 	public void keyPressed(KeyEvent e) {
 //		System.out.println("Key pressed code=" + e.getKeyCode() + ", char=" + e.getKeyChar());
 //		System.out.println("x: " + x + ", y: " + y + ", currentImage: " + currentImage);
-
+        System.out.println("x: " + x + ", y: " + y);
 		int c = e.getKeyCode();
 		if (c == KeyEvent.VK_UP) {
             velX = -1;
