@@ -9,7 +9,6 @@ import javax.swing.*;
 public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	//protected ImageIcon images[]; // array of images
 	protected ImageIcon images[];
-	protected ImageIcon car2[];
 	private int currentImage = 0; // current image index
 	private final int ANIMATION_DELAY = 0; // millisecond delay
 	private int width = 850; // image width
@@ -18,26 +17,20 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	// Initial car position
 	private int x = 425;
 	private int y = 500;
-	private int x1 = 420;
-	private int y1 = 550;
     private int velX = 0;
     private int velY = 0;
-			
 	
 	public LogoAnimatorJPanel() {
 	 try {
 		 images = new ImageIcon[16];
-		 car2 = new ImageIcon[16];
 		 // Load all the images
 		 for ( int count = 0; count < 16; count++ ) {
 			 // Load images according to the image path
 			 images[count] = new ImageIcon("img/BLUE-"+(count+1)+".jpg");
 		 }
-//		 images[0] = new ImageIcon("img/BLUE-13.jpg");
-		 car2[0] = new ImageIcon("img/red-13.jpg");
-	 } catch( Exception e ) {
-		 e.printStackTrace();
-	 }
+         } catch( Exception e ) {
+             e.printStackTrace();
+         }
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -67,7 +60,6 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 
 	
 		 images[currentImage].paintIcon( this, g, x, y );
-		 car2[0].paintIcon(this,g,x1,y1);
 		 // set next image to be drawn only if Timer is running
 		 //if ( animationTimer.isRunning() )
 			 //currentImage = ( currentImage + 1 ) % images.length;
