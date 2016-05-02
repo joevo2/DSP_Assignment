@@ -20,7 +20,6 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	private int y = 500;
 	private int x1 = 420;
 	private int y1 = 550;
-    private int carDirection1 = 0;
     private int velX = 0;
     private int velY = 0;
 			
@@ -114,17 +113,9 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("Key pressed code=" + e.getKeyCode() + ", char=" + e.getKeyChar());
-		System.out.println("x: " + x + ", y: " + y + ", currentImage: " + currentImage);
-        System.out.println("Car Direction: " + carDirection1 + "\n");
+//		System.out.println("Key pressed code=" + e.getKeyCode() + ", char=" + e.getKeyChar());
+//		System.out.println("x: " + x + ", y: " + y + ", currentImage: " + currentImage);
 
-//        if (e.getKeyCode() == 38) {
-//            x-=5;
-//        }
-//        if (e.getKeyCode() == 87) {
-//            x1-=5;
-//        }
 		switch(e.getKeyCode()) {
 			// Left key
 	    	case 37:
@@ -135,12 +126,6 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	    		else {
                     currentImage=15;
                 }
-                if  (carDirection1 < 0) {
-                    carDirection1 = 15;
-                }
-
-                // Turn car direction
-                carTurn();
 	    		break;
 	    	// Up key
 	    	case 38:
@@ -155,19 +140,10 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	    		else {
                     currentImage=0;
                 }
-                carDirection1 += 1;
-                if  (carDirection1 == 16) {
-                    carDirection1 = 0;
-                }
-                carTurn();
-
                 break;
 	    	// Down key
 	    	case 40:
 	    		x+=5;
-	    		break;
-	    	case 87:
-	    		x1-=5;
 	    		break;
 	    }
 	}
@@ -176,14 +152,4 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 	}
-
-    public void carTurn() {
-
-        switch (carDirection1) {
-              case 0:
-                  break;
-              case 1:
-                  break;
-        }
-    };
 }
