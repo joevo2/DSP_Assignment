@@ -9,6 +9,7 @@ import javax.swing.*;
 public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyListener{
 	//protected ImageIcon car1[]; // array of car1
 	protected ImageIcon car1[];
+    protected ImageIcon car2[];
 	private int currentImage = 0; // current image index
 	private final int ANIMATION_DELAY = 0; // millisecond delay
 	private int width = 850; // image width
@@ -17,17 +18,23 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
 	// Initial car position
 	private int x = 425;
 	private int y = 500;
+    private int x1 = 420;
+    private int y1 = 550;
     private int velX = 0;
     private int velY = 0;
+    private int velX1 = 0;
+    private int velY1 = 0;
 	
 	public LogoAnimatorJPanel() {
 	 try {
 		 car1 = new ImageIcon[16];
+         car2 = new ImageIcon[16];
 		 // Load all the car1
 		 for ( int count = 0; count < 16; count++ ) {
 			 // Load car1 according to the image path
 			 car1[count] = new ImageIcon("img/BLUE-"+(count+1)+".jpg");
-		 }
+             car2[count] = new ImageIcon("img/red-"+(count+1)+".jpg");
+         }
          } catch( Exception e ) {
              e.printStackTrace();
          }
@@ -60,6 +67,7 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
 
 	
 		 car1[currentImage].paintIcon( this, g, x, y );
+         car2[currentImage].paintIcon( this, g, x1, y1 );
 	 } // end method paintComponent
 	 
 	 // start animation, or restart if window is redisplayed
@@ -97,6 +105,9 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
 		 public void actionPerformed( ActionEvent actionEvent) {
              x = x + velX;
              y = y + velY;
+
+             x1 = x1 + velX1;
+             y1 = y1 + velY1;
              repaint();
 		 }
 	 }
@@ -121,6 +132,44 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
             velX = 1;
             velY = 0;
         }
+        if (c == KeyEvent.VK_LEFT) {
+            if (currentImage > 0)
+                currentImage-=1;
+            else
+                currentImage=15;
+        }
+        if (c == KeyEvent.VK_RIGHT) {
+            if (currentImage != 15) {
+                currentImage += 1;
+            }
+            else {
+                currentImage=0;
+            }
+        }
+
+        // Car 2
+        if (c == KeyEvent.VK_W) {
+            velX1 = -1;
+            velY1 = 0;
+        }
+        if (c == KeyEvent.VK_S) {
+            velX1 = 1;
+            velY1 = 0;
+        }
+        if (c == KeyEvent.VK_A) {
+            if (currentImage > 0)
+                currentImage-=1;
+            else
+                currentImage=15;
+        }
+        if (c == KeyEvent.VK_D) {
+            if (currentImage != 15) {
+                currentImage += 1;
+            }
+            else {
+                currentImage=0;
+            }
+        }
 	}
 
 	@Override
@@ -129,5 +178,7 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
         velX = 0;
         velY = 0;
 
+        velX1 = 0;
+        velY1 = 0;
     }
 }
