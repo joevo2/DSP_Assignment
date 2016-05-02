@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
-public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyListener{
+public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	//protected ImageIcon car1[]; // array of car1
 	protected ImageIcon car1[];
     protected ImageIcon car2[];
@@ -95,11 +95,6 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
 
 		 return new Dimension(width, height);
 	 }
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-	}
 
 	private class TimerHandler implements ActionListener {
 		 public void actionPerformed( ActionEvent actionEvent) {
