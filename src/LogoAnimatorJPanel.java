@@ -6,9 +6,9 @@ import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
-public class LogoAnimatorJPanel extends JPanel implements KeyListener{
-	//protected ImageIcon images[]; // array of images
-	protected ImageIcon images[];
+public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyListener{
+	//protected ImageIcon car1[]; // array of car1
+	protected ImageIcon car1[];
 	private int currentImage = 0; // current image index
 	private final int ANIMATION_DELAY = 0; // millisecond delay
 	private int width = 850; // image width
@@ -22,11 +22,11 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	
 	public LogoAnimatorJPanel() {
 	 try {
-		 images = new ImageIcon[16];
-		 // Load all the images
+		 car1 = new ImageIcon[16];
+		 // Load all the car1
 		 for ( int count = 0; count < 16; count++ ) {
-			 // Load images according to the image path
-			 images[count] = new ImageIcon("img/BLUE-"+(count+1)+".jpg");
+			 // Load car1 according to the image path
+			 car1[count] = new ImageIcon("img/BLUE-"+(count+1)+".jpg");
 		 }
          } catch( Exception e ) {
              e.printStackTrace();
@@ -37,8 +37,8 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	} // end LogoAnimatorJPanel constructor
 	
 	 // display current image
-	 public void paintComponent( Graphics g ) {
-		 super.paintComponent( g ); // call superclass paintComponent
+	 public void paintComponent(Graphics g) {
+		 super.paintComponent(g); // call superclass paintComponent
 		 
 		 // Race track
 	     Color c2 = Color.white;
@@ -59,10 +59,7 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	     g.drawLine( 425, 500, 425, 600 ); // start line
 
 	
-		 images[currentImage].paintIcon( this, g, x, y );
-		 // set next image to be drawn only if Timer is running
-		 //if ( animationTimer.isRunning() )
-			 //currentImage = ( currentImage + 1 ) % images.length;
+		 car1[currentImage].paintIcon( this, g, x, y );
 	 } // end method paintComponent
 	 
 	 // start animation, or restart if window is redisplayed
@@ -73,25 +70,30 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 			 animationTimer = new Timer(ANIMATION_DELAY, new TimerHandler());
 
 			 animationTimer.start(); // start Timer
-		 } else { // animationTimer already exists, restart animation
-			 if (! animationTimer.isRunning())
-				 animationTimer.restart();
 		 }
 	 }
 	 
 	 public void stopAnimation() {
+
 		 animationTimer.stop();
 	 }
 	 
 	 public Dimension getMinimumSize() {
+
 		 return getPreferredSize();
 	 }
 	 
 	 public Dimension getPreferredSize() {
+
 		 return new Dimension(width, height);
 	 }
 
-    private class TimerHandler implements ActionListener {
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+	}
+
+	private class TimerHandler implements ActionListener {
 		 public void actionPerformed( ActionEvent actionEvent) { 
 			 repaint();
 		 }
@@ -108,36 +110,10 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 //		System.out.println("Key pressed code=" + e.getKeyCode() + ", char=" + e.getKeyChar());
 //		System.out.println("x: " + x + ", y: " + y + ", currentImage: " + currentImage);
 
-		switch(e.getKeyCode()) {
-			// Left key
-	    	case 37:
-	    		// Change car turning image
-	    		if (currentImage > 0) {
-                    currentImage -= 1;
-                }
-	    		else {
-                    currentImage=15;
-                }
-	    		break;
-	    	// Up key
-	    	case 38:
-                x-=5;
-	    		break;
-	    	// Right key
-	    	case 39:
-	    		// Change car turning image
-	    		if (currentImage != 15) {
-                    currentImage += 1;
-                }
-	    		else {
-                    currentImage=0;
-                }
-                break;
-	    	// Down key
-	    	case 40:
-	    		x+=5;
-	    		break;
-	    }
+		int c = e.getKeyCode();
+		if (c == KeyEvent.VK_UP) {
+			x -= 5;
+		}
 	}
 
 	@Override
