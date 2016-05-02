@@ -136,6 +136,16 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
                  }
              }
 
+             // inner grass right boundary
+             if (y > 150 && y < 500) {
+                 if (x < 750 && x > 700) {
+                     if (x < 705) {
+                         x = 705;
+                         velX = 0;
+                     }
+                 }
+             }
+
 //             if (x < 700) {
 //                 x = 700;
 //                 velX = 0;
