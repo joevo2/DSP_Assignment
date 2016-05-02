@@ -94,8 +94,10 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
 	}
 
 	private class TimerHandler implements ActionListener {
-		 public void actionPerformed( ActionEvent actionEvent) { 
-			 repaint();
+		 public void actionPerformed( ActionEvent actionEvent) {
+             x = x + velX;
+             y = y + velY;
+             repaint();
 		 }
 	 }
 
@@ -112,12 +114,20 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
 
 		int c = e.getKeyCode();
 		if (c == KeyEvent.VK_UP) {
-			x -= 5;
+            velX = -1;
+            velY = 0;
 		}
+        if (c == KeyEvent.VK_DOWN) {
+            velX = 1;
+            velY = 0;
+        }
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-	}
+        velX = 0;
+        velY = 0;
+
+    }
 }
