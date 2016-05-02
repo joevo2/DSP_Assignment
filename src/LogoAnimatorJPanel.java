@@ -17,7 +17,7 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
 	private Timer animationTimer; // Timer drives animation 23
 	// Initial car position
 	private int x = 425;
-	private int y = 500;
+	private int y = 505;
     private int x1 = 420;
     private int y1 = 550;
     private int velX = 0;
@@ -158,7 +158,7 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
 
              // inner grass top boundary
              if (x < 700 && x > 100) {
-                 if (y < 100 && y < 150) {
+                 if (y > 100 && y < 150) {
                      if (y > 145) {
                          velY = 0;
                          y = 145;
