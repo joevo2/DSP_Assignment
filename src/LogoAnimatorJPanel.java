@@ -10,8 +10,8 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	//protected ImageIcon car1[]; // array of car1
 	protected ImageIcon car1[];
     protected ImageIcon car2[];
-	private int currentImage = 0; // current image index
-	private final int ANIMATION_DELAY = 0; // millisecond delay
+	private int car1Image = 0; // current image index
+	private final int ANIMATION_DELAY = 50; // millisecond delay
 	private int width = 850; // image width
 	private int height = 650; // image height
 	private Timer animationTimer; // Timer drives animation 23
@@ -35,9 +35,9 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 			 car1[count] = new ImageIcon("img/BLUE-"+(count+1)+".jpg");
              car2[count] = new ImageIcon("img/red-"+(count+1)+".jpg");
          }
-         } catch( Exception e ) {
-             e.printStackTrace();
-         }
+     } catch( Exception e ) {
+         e.printStackTrace();
+     }
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -66,14 +66,14 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	     g.drawLine( 425, 500, 425, 600 ); // start line
 
 	
-		 car1[currentImage].paintIcon( this, g, x, y );
-         car2[currentImage].paintIcon( this, g, x1, y1 );
+		 car1[car1Image].paintIcon( this, g, x, y );
+         car2[car1Image].paintIcon( this, g, x1, y1 );
 	 } // end method paintComponent
 	 
 	 // start animation, or restart if window is redisplayed
 	 public void startAnimation() {
 		 if ( animationTimer == null ) {
-			 currentImage = 12; // display first image
+			 car1Image = 12; // display first image
 			 
 			 animationTimer = new Timer(ANIMATION_DELAY, new TimerHandler());
 
@@ -98,8 +98,74 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 
 	private class TimerHandler implements ActionListener {
 		 public void actionPerformed( ActionEvent actionEvent) {
-             // collison for car1
+             switch (car1Image) {
+                 case 0:
+                     velX = 0;
+                     velY = -10;
+                     break;
+                 case 1:
+                     velX = 3;
+                     velY = -7;
+                     break;
+                 case 2:
+                     velX = 5;
+                     velY = -5;
+                     break;
+                 case 3:
+                     velX = 7;
+                     velY = -3;
+                     break;
+                 case 4:
+                     velX = 10;
+                     velY = 0;
+                     break;
+                 case 5:
+                     velX = 7;
+                     velY = 3;
+                     break;
+                 case 6:
+                     velX = 5;
+                     velY = 5;
+                     break;
+                 case 7:
+                     velX = 3;
+                     velY = 7;
+                     break;
+                 case 8:
+                     velX = 0;
+                     velY = 10;
+                     break;
+                 case 9:
+                     velX = -3;
+                     velY = 7;
+                     break;
+                 case 10:
+                     velX = -5;
+                     velY = 5;
+                     break;
+                 case 11:
+                     velX = -7;
+                     velY = 3;
+                     break;
+                 case 12:
+                     velX = -10;
+                     velY = 0;
+                     break;
+                 case 13:
+                     velX = -7;
+                     velY = -3;
+                     break;
+                 case 14:
+                     velX = -5;
+                     velY = -5;
+                     break;
+                 case 15:
+                     velX = -3;
+                     velY = -7;
+                     break;
+             }
 
+             // collison for car1
              // outer boundary
              if (x < 50) {
                  velX = 0;
@@ -161,6 +227,8 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
                  }
              }
 
+
+
              x = x + velX;
              y = y + velY;
 
@@ -179,52 +247,47 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 //		System.out.println("Key pressed code=" + e.getKeyCode() + ", char=" + e.getKeyChar());
-//		System.out.println("x: " + x + ", y: " + y + ", currentImage: " + currentImage);
-        System.out.println("x: " + x + ", y: " + y);
+		System.out.println("x: " + x + ", y: " + y + ", car1Image: " + car1Image);
 		int c = e.getKeyCode();
-//		if (c == KeyEvent.VK_UP) {
+		if (c == KeyEvent.VK_UP) {
+            velX = -10;
+            velY = 0;
+		}
+        if (c == KeyEvent.VK_DOWN) {
+            velX = 10;
+            velY = 0;
+        }
+        if (c == KeyEvent.VK_LEFT) {
+            if (car1Image > 0)
+                car1Image -=1;
+            else
+                car1Image =15;
+        }
+        if (c == KeyEvent.VK_RIGHT) {
+            if (car1Image != 15) {
+                car1Image += 1;
+            }
+            else {
+                car1Image =0;
+            }
+        }
+
+//        if (c == KeyEvent.VK_LEFT) {
 //            velX = -1;
 //            velY = 0;
-//		}
-//        if (c == KeyEvent.VK_DOWN) {
-//            velX = 1;
-//            velY = 0;
 //        }
-//        if (c == KeyEvent.VK_LEFT) {
-//            if (currentImage > 0)
-//                currentImage-=1;
-//            else
-//                currentImage=15;
-//            velX = 0;
-//            velY = 1;
-//        }
-//        if (c == KeyEvent.VK_RIGHT) {
-//            if (currentImage != 15) {
-//                currentImage += 1;
-//            }
-//            else {
-//                currentImage=0;
-//            }
+//        if (c == KeyEvent.VK_UP) {
 //            velX = 0;
 //            velY = -1;
 //        }
-
-        if (c == KeyEvent.VK_LEFT) {
-            velX = -1;
-            velY = 0;
-        }
-        if (c == KeyEvent.VK_UP) {
-            velX = 0;
-            velY = -1;
-        }
-        if (c == KeyEvent.VK_RIGHT) {
-            velX = 1;
-            velY = 0;
-        }
-        if (c == KeyEvent.VK_DOWN) {
-            velX = 0;
-            velY = 1;
-        }
+//        if (c == KeyEvent.VK_RIGHT) {
+//            velX = 1;
+//            velY = 0;
+//        }
+//        if (c == KeyEvent.VK_DOWN) {
+//            velX = 0;
+//            velY = 1;
+//        }
 
         // Car 2
         if (c == KeyEvent.VK_W) {
@@ -236,17 +299,17 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
             velY1 = 0;
         }
         if (c == KeyEvent.VK_A) {
-            if (currentImage > 0)
-                currentImage-=1;
+            if (car1Image > 0)
+                car1Image -=1;
             else
-                currentImage=15;
+                car1Image =15;
         }
         if (c == KeyEvent.VK_D) {
-            if (currentImage != 15) {
-                currentImage += 1;
+            if (car1Image != 15) {
+                car1Image += 1;
             }
             else {
-                currentImage=0;
+                car1Image =0;
             }
         }
 	}
