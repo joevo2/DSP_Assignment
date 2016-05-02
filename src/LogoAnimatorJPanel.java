@@ -126,6 +126,21 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
                  y = 550;
              }
 
+             // inner grass left boundary
+             if (y > 150 && y < 500) {
+                 if (x > 50 && x < 100) {
+                     if (x > 95) {  // if x become 100 then it will go to y=500
+                         x = 95;
+                         velX = 0;
+                     }
+                 }
+             }
+
+//             if (x < 700) {
+//                 x = 700;
+//                 velX = 0;
+//             }
+
              // inner grass bottom boundary
              if (x < 700 && x > 100) {
                  if (y < 500) {
@@ -155,31 +170,48 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
 //		System.out.println("x: " + x + ", y: " + y + ", currentImage: " + currentImage);
         System.out.println("x: " + x + ", y: " + y);
 		int c = e.getKeyCode();
-		if (c == KeyEvent.VK_UP) {
+//		if (c == KeyEvent.VK_UP) {
+//            velX = -1;
+//            velY = 0;
+//		}
+//        if (c == KeyEvent.VK_DOWN) {
+//            velX = 1;
+//            velY = 0;
+//        }
+//        if (c == KeyEvent.VK_LEFT) {
+//            if (currentImage > 0)
+//                currentImage-=1;
+//            else
+//                currentImage=15;
+//            velX = 0;
+//            velY = 1;
+//        }
+//        if (c == KeyEvent.VK_RIGHT) {
+//            if (currentImage != 15) {
+//                currentImage += 1;
+//            }
+//            else {
+//                currentImage=0;
+//            }
+//            velX = 0;
+//            velY = -1;
+//        }
+
+        if (c == KeyEvent.VK_LEFT) {
             velX = -1;
             velY = 0;
-		}
-        if (c == KeyEvent.VK_DOWN) {
+        }
+        if (c == KeyEvent.VK_UP) {
+            velX = 0;
+            velY = -1;
+        }
+        if (c == KeyEvent.VK_RIGHT) {
             velX = 1;
             velY = 0;
         }
-        if (c == KeyEvent.VK_LEFT) {
-            if (currentImage > 0)
-                currentImage-=1;
-            else
-                currentImage=15;
+        if (c == KeyEvent.VK_DOWN) {
             velX = 0;
             velY = 1;
-        }
-        if (c == KeyEvent.VK_RIGHT) {
-            if (currentImage != 15) {
-                currentImage += 1;
-            }
-            else {
-                currentImage=0;
-            }
-            velX = 0;
-            velY = -1;
         }
 
         // Car 2
