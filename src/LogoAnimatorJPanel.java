@@ -104,24 +104,24 @@ public class LogoAnimatorJPanel extends JPanel implements ActionListener, KeyLis
 	private class TimerHandler implements ActionListener {
 		 public void actionPerformed( ActionEvent actionEvent) {
              // collison for car1
-             if (x < 0) {
+             if (x < 50) {
                  velX = 0;
-                 x = 0;
+                 x = 50;
              }
 
-             if (x > 530) {
+             if (x > 750) {
                  velX = 0;
-                 x = 530;
+                 x = 750;
              }
 
-             if (y < 0) {
+             if (y < 100) {
                  velY = 0;
-                 y = 0;
+                 y = 100;
              }
 
-             if (y > 600) {
+             if (y > 550) {
                  velY = 0;
-                 y = 600;
+                 y = 550;
              }
 
              x = x + velX;
