@@ -196,19 +196,19 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
         if (c == KeyEvent.VK_UP) {
 //            velX = -10;
 //            velY = 0;
-            carDirection(car1Image, "up");
+            carDirection(car1Image, "up", 1);
         }
         if (c == KeyEvent.VK_DOWN) {
 //            velX = 10;
 //            velY = 0;
-            carDirection(car1Image, "down");
+            carDirection(car1Image, "down", 1);
         }
         if (c == KeyEvent.VK_LEFT) {
             if (car1Image > 0)
                 car1Image -= 1;
             else
                 car1Image = 15;
-            carDirection(car1Image, "");
+            carDirection(car1Image, "", 1);
         }
         if (c == KeyEvent.VK_RIGHT) {
             if (car1Image != 15) {
@@ -216,7 +216,7 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
             } else {
                 car1Image = 0;
             }
-            carDirection(car1Image, "");
+            carDirection(car1Image, "", 1);
         }
 
 //        if (c == KeyEvent.VK_LEFT) {
@@ -238,16 +238,17 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
 
         // Car 2
         if (c == KeyEvent.VK_W) {
-            carDirection(car2Image, "up");
+            carDirection(car2Image, "up", 2);
         }
         if (c == KeyEvent.VK_S) {
-            carDirection(car2Image, "down");
+            carDirection(car2Image, "down", 2);
         }
         if (c == KeyEvent.VK_A) {
             if (car2Image > 0)
                 car2Image -= 1;
             else
                 car2Image = 15;
+            carDirection(car2Image, "", 2);
         }
         if (c == KeyEvent.VK_D) {
             if (car2Image != 15) {
@@ -255,6 +256,7 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
             } else {
                 car2Image = 0;
             }
+            carDirection(car2Image, "", 2);
         }
     }
 
@@ -268,81 +270,92 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
         velY1 = 0;
     }
 
-    public void carDirection(int carD, String type) {
-        switch (carD) {
+    public void carDirection(int carImage, String type, int car) {
+        int x = 0;
+        int y = 0;
+        switch (carImage) {
             case 0:
-                velX = 0;
-                velY = -10;
+                x = 0;
+                y = -10;
                 break;
             case 1:
-                velX = 3;
-                velY = -7;
+                x = 3;
+                y = -7;
                 break;
             case 2:
-                velX = 5;
-                velY = -5;
+                x = 5;
+                y = -5;
                 break;
             case 3:
-                velX = 7;
-                velY = -3;
+                x = 7;
+                y = -3;
                 break;
             case 4:
-                velX = 10;
-                velY = 0;
+                x = 10;
+                y = 0;
                 break;
             case 5:
-                velX = 7;
-                velY = 3;
+                x = 7;
+                y = 3;
                 break;
             case 6:
-                velX = 5;
-                velY = 5;
+                x = 5;
+                y = 5;
                 break;
             case 7:
-                velX = 3;
-                velY = 7;
+                x = 3;
+                y = 7;
                 break;
             case 8:
-                velX = 0;
-                velY = 10;
+                x = 0;
+                y = 10;
                 break;
             case 9:
-                velX = -3;
-                velY = 7;
+                x = -3;
+                y = 7;
                 break;
             case 10:
-                velX = -5;
-                velY = 5;
+                x = -5;
+                y = 5;
                 break;
             case 11:
-                velX = -7;
-                velY = 3;
+                x = -7;
+                y = 3;
                 break;
             case 12:
-                velX = -10;
-                velY = 0;
+                x = -10;
+                y = 0;
                 break;
             case 13:
-                velX = -7;
-                velY = -3;
+                x = -7;
+                y = -3;
                 break;
             case 14:
-                velX = -5;
-                velY = -5;
+                x = -5;
+                y = -5;
                 break;
             case 15:
-                velX = -3;
-                velY = -7;
+                x = -3;
+                y = -7;
                 break;
         }
 
         if (type == "up") {
-            velX += velX;
-            velY += velY;
+            x += x;
+            y += y;
         }
         if (type == "down") {
-            velX -= velX;
-            velY -= velY;
+            x -= x;
+            y -= y;
+        }
+
+        if (car == 1) {
+            velX = x;
+            velY = y;
+        }
+        if (car == 2) {
+            velX1 = x;
+            velY1 = y;
         }
     }
 }
