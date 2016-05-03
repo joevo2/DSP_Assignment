@@ -11,7 +11,7 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	protected ImageIcon car1[];
     protected ImageIcon car2[];
 	private int car1Image = 0; // current image index
-	private final int ANIMATION_DELAY = 20; // millisecond delay
+	private final int ANIMATION_DELAY = 10; // millisecond delay
 	private int width = 850; // image width
 	private int height = 650; // image height
 	private Timer animationTimer; // Timer drives animation 23
@@ -121,7 +121,7 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
              }
 
              // inner grass left boundary
-             if (y > 200 && y < 450) {
+             if (y > 150 && y < 500) {
                  if (x > 50 && x < 110) {
                      if (x >= 100) {  // if x become 100 then it will go to y=500
                          x = 99;
@@ -130,9 +130,10 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
                  }
              }
 
+
              // inner grass right boundary
              if (y > 150 && y < 500) {
-                 if (x < 750 && x > 700) {
+                 if (x < 750 && x > 650) {
                      if (x < 705) {
                          x = 705;
                          velX = 0;
@@ -142,17 +143,17 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 
              // inner grass bottom boundary
              if (x < 700 && x > 100) {
-                 if (y > 500 && y <700) {
-                     if (y < 505) {
+                 if (y > 400 && y <700) {
+                     if (y < 500) {
                          velY = 0;
-                         y = 505;
+                         y = 500;
                      }
                  }
              }
 
              // inner grass top boundary
              if (x < 700 && x > 100) {
-                 if (y > 100 && y < 150) {
+                 if (y > 100 && y < 200) {
                      if (y > 145) {
                          velY = 0;
                          y = 145;
