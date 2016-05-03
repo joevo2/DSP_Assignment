@@ -11,6 +11,7 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
     protected ImageIcon car1[];
     protected ImageIcon car2[];
     private int car1Image = 0; // current image index
+    private int car2Image = 0; // current image index
     private final int ANIMATION_DELAY = 20; // millisecond delay
     private int width = 850; // image width
     private int height = 650; // image height
@@ -67,13 +68,14 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
 
 
         car1[car1Image].paintIcon(this, g, x, y);
-        car2[car1Image].paintIcon(this, g, x1, y1);
+        car2[car2Image].paintIcon(this, g, x1, y1);
     } // end method paintComponent
 
     // start animation, or restart if window is redisplayed
     public void startAnimation() {
         if (animationTimer == null) {
             car1Image = 12; // display first image
+            car2Image = 12;
 
             animationTimer = new Timer(ANIMATION_DELAY, new TimerHandler());
 
@@ -100,21 +102,26 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
         public void actionPerformed(ActionEvent actionEvent) {
             // collison for car1
             // outer boundary
+
+            // left outer border
             if (x < 50) {
                 velX = 0;
                 x = 50;
             }
 
+            // right outer border
             if (x > 750) {
                 velX = 0;
                 x = 750;
             }
 
+            // top outer border
             if (y < 100) {
                 velY = 0;
                 y = 100;
             }
 
+            // bottom outer border
             if (y > 550) {
                 velY = 0;
                 y = 550;
@@ -160,7 +167,7 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
                 }
             }
 
-            // car collison, not working
+            // car collison
             if (x == x1 && y == y1) {
                 x = x - 20;
                 y = y - 20;
@@ -231,24 +238,22 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
 
         // Car 2
         if (c == KeyEvent.VK_W) {
-            velX1 = -1;
-            velY1 = 0;
+            carDirection(car2Image, "up");
         }
         if (c == KeyEvent.VK_S) {
-            velX1 = 1;
-            velY1 = 0;
+            carDirection(car2Image, "down");
         }
         if (c == KeyEvent.VK_A) {
-            if (car1Image > 0)
-                car1Image -= 1;
+            if (car2Image > 0)
+                car2Image -= 1;
             else
-                car1Image = 15;
+                car2Image = 15;
         }
         if (c == KeyEvent.VK_D) {
-            if (car1Image != 15) {
-                car1Image += 1;
+            if (car2Image != 15) {
+                car2Image += 1;
             } else {
-                car1Image = 0;
+                car2Image = 0;
             }
         }
     }
@@ -336,8 +341,8 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
             velY += velY;
         }
         if (type == "down") {
-            velX -= 1;
-            velY -= 1;
+            velX -= velX;
+            velY -= velY;
         }
     }
 }
