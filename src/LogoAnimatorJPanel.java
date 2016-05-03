@@ -103,6 +103,7 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
             // collison for car1
             // outer boundary
 
+            //car 1
             // left outer border
             if (x < 50) {
                 velX = 0;
@@ -127,6 +128,34 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
                 y = 550;
             }
 
+            // car 2
+            // left outer border
+            if (x1 < 50) {
+                velX1 = 0;
+                x1 = 50;
+            }
+
+            // right outer border
+            if (x1 > 750) {
+                velX1 = 0;
+                x1 = 750;
+            }
+
+            // top outer border
+            if (y1 < 100) {
+                velY1 = 0;
+                y1 = 100;
+            }
+
+            // bottom outer border
+            if (y1 > 550) {
+                velY1 = 0;
+                y1 = 550;
+            }
+
+            // Inner boundary
+
+            // car 1
             // inner grass left boundary
             if (y > 150 && y < 500) {
                 if (x > 50 && x < 110) {
@@ -167,11 +196,52 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
                 }
             }
 
-            // car collison
-            if (x == x1 && y == y1) {
-                x = x - 20;
-                y = y - 20;
+            // car 2
+            // inner grass left boundary
+            if (y1 > 150 && y1 < 500) {
+                if (x1 > 50 && x1 < 110) {
+                    if (x1 >= 100) {  // if x become 100 then it will go to y=500
+                        x1 = 99;
+                        velX1 = 0;
+                    }
+                }
             }
+
+            // inner grass right boundary
+            if (y1 > 150 && y1 < 500) {
+                if (x1 < 750 && x1 > 650) {
+                    if (x1 < 705) {
+                        x1 = 705;
+                        velX1 = 0;
+                    }
+                }
+            }
+
+            // inner grass bottom boundary
+            if (x1 < 700 && x1 > 100) {
+                if (y1 > 400 && y1 < 700) {
+                    if (y1 < 500) {
+                        velY1 = 0;
+                        y1 = 500;
+                    }
+                }
+            }
+
+            // inner grass top boundary
+            if (x1 < 700 && x1 > 100) {
+                if (y1 > 100 && y1 < 200) {
+                    if (y1 > 145) {
+                        velY1 = 0;
+                        y1 = 145;
+                    }
+                }
+            }
+
+            // car collison
+//            if (x == x1 && y == y1) {
+//                x = x - 20;
+//                y = y - 20;
+//            }
 
             x = x + velX;
             y = y + velY;
