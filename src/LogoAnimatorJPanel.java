@@ -11,7 +11,7 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 	protected ImageIcon car1[];
     protected ImageIcon car2[];
 	private int car1Image = 0; // current image index
-	private final int ANIMATION_DELAY = 50; // millisecond delay
+	private final int ANIMATION_DELAY = 20; // millisecond delay
 	private int width = 850; // image width
 	private int height = 650; // image height
 	private Timer animationTimer; // Timer drives animation 23
@@ -98,73 +98,6 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 
 	private class TimerHandler implements ActionListener {
 		 public void actionPerformed( ActionEvent actionEvent) {
-             switch (car1Image) {
-                 case 0:
-                     velX = 0;
-                     velY = -10;
-                     break;
-                 case 1:
-                     velX = 3;
-                     velY = -7;
-                     break;
-                 case 2:
-                     velX = 5;
-                     velY = -5;
-                     break;
-                 case 3:
-                     velX = 7;
-                     velY = -3;
-                     break;
-                 case 4:
-                     velX = 10;
-                     velY = 0;
-                     break;
-                 case 5:
-                     velX = 7;
-                     velY = 3;
-                     break;
-                 case 6:
-                     velX = 5;
-                     velY = 5;
-                     break;
-                 case 7:
-                     velX = 3;
-                     velY = 7;
-                     break;
-                 case 8:
-                     velX = 0;
-                     velY = 10;
-                     break;
-                 case 9:
-                     velX = -3;
-                     velY = 7;
-                     break;
-                 case 10:
-                     velX = -5;
-                     velY = 5;
-                     break;
-                 case 11:
-                     velX = -7;
-                     velY = 3;
-                     break;
-                 case 12:
-                     velX = -10;
-                     velY = 0;
-                     break;
-                 case 13:
-                     velX = -7;
-                     velY = -3;
-                     break;
-                 case 14:
-                     velX = -5;
-                     velY = -5;
-                     break;
-                 case 15:
-                     velX = -3;
-                     velY = -7;
-                     break;
-             }
-
              // collison for car1
              // outer boundary
              if (x < 50) {
@@ -188,10 +121,10 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
              }
 
              // inner grass left boundary
-             if (y > 150 && y < 500) {
-                 if (x > 50 && x < 100) {
-                     if (x > 95) {  // if x become 100 then it will go to y=500
-                         x = 95;
+             if (y > 200 && y < 450) {
+                 if (x > 50 && x < 110) {
+                     if (x >= 100) {  // if x become 100 then it will go to y=500
+                         x = 99;
                          velX = 0;
                      }
                  }
@@ -227,7 +160,11 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
                  }
              }
 
-
+             // car collison, not working
+             if (x == x1 && y == y1) {
+                 x = x-20;
+                 y = y-20;
+             }
 
              x = x + velX;
              y = y + velY;
@@ -262,6 +199,7 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
                 car1Image -=1;
             else
                 car1Image =15;
+            carDirection(car1Image);
         }
         if (c == KeyEvent.VK_RIGHT) {
             if (car1Image != 15) {
@@ -270,6 +208,7 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
             else {
                 car1Image =0;
             }
+            carDirection(car1Image);
         }
 
 //        if (c == KeyEvent.VK_LEFT) {
@@ -322,5 +261,74 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener{
 
         velX1 = 0;
         velY1 = 0;
+    }
+
+    public void carDirection(int carD) {
+        switch (carD) {
+            case 0:
+                velX = 0;
+                velY = -10;
+                break;
+            case 1:
+                velX = 3;
+                velY = -7;
+                break;
+            case 2:
+                velX = 5;
+                velY = -5;
+                break;
+            case 3:
+                velX = 7;
+                velY = -3;
+                break;
+            case 4:
+                velX = 10;
+                velY = 0;
+                break;
+            case 5:
+                velX = 7;
+                velY = 3;
+                break;
+            case 6:
+                velX = 5;
+                velY = 5;
+                break;
+            case 7:
+                velX = 3;
+                velY = 7;
+                break;
+            case 8:
+                velX = 0;
+                velY = 10;
+                break;
+            case 9:
+                velX = -3;
+                velY = 7;
+                break;
+            case 10:
+                velX = -5;
+                velY = 5;
+                break;
+            case 11:
+                velX = -7;
+                velY = 3;
+                break;
+            case 12:
+                velX = -10;
+                velY = 0;
+                break;
+            case 13:
+                velX = -7;
+                velY = -3;
+                break;
+            case 14:
+                velX = -5;
+                velY = -5;
+                break;
+            case 15:
+                velX = -3;
+                velY = -7;
+                break;
+        }
     }
 }
