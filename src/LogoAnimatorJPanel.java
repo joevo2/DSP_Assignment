@@ -33,8 +33,8 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
             // Load all the car1
             for (int count = 0; count < 16; count++) {
                 // Load car1 according to the image path
-                car1[count] = new ImageIcon("img/BLUE-" + (count + 1) + ".jpg");
-                car2[count] = new ImageIcon("img/red-" + (count + 1) + ".jpg");
+                car1[count] = new ImageIcon("img/Red/red-" + (count + 1) + ".png");
+                car2[count] = new ImageIcon("img/Green/green-" + (count + 1) + ".png");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -264,13 +264,9 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
         System.out.println("x: " + x + ", y: " + y + ", car1Image: " + car1Image);
         int c = e.getKeyCode();
         if (c == KeyEvent.VK_UP) {
-//            velX = -10;
-//            velY = 0;
             carDirection(car1Image, "up", 1);
         }
         if (c == KeyEvent.VK_DOWN) {
-//            velX = 10;
-//            velY = 0;
             carDirection(car1Image, "down", 1);
         }
         if (c == KeyEvent.VK_LEFT) {
