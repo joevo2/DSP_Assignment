@@ -17,11 +17,14 @@ public class LogoAnimator {
         // if client cannot connect then it will become a server
         int port = 9090;
         try {
+            // Client part
             Socket s = new Socket("localhost", port);
             BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             String answer = input.readLine();
             System.out.println(answer);
         } catch (Exception e) {
+            // Server part
+            // if it cannot find a server, it will become a server itself
             ServerSocket listener = new ServerSocket(port);
             try {
                 while (true) {
@@ -39,8 +42,9 @@ public class LogoAnimator {
             }
         }
 
+        // Create the JPanel window and the assets inside.
 		LogoAnimatorJPanel animation = new LogoAnimatorJPanel();
-		
+
 		JFrame window = new JFrame("Super duper car racing game");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.add(animation);
