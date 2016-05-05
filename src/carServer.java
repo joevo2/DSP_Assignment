@@ -67,8 +67,6 @@ public class carServer {
                         // car2Y = input;
                     }
                 }
-
-
             } catch (Exception e) {
                 log("Error handling client# " + clientNumber + ": " + e);
             } finally {

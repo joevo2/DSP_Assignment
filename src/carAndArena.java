@@ -61,7 +61,7 @@ public class carAndArena extends JPanel implements KeyListener {
         super.paintComponent(g); // call superclass paintComponent
 
         // Race track
-        Color c2 = Color.white;
+        Color c2 = Color.black;
         g.setColor(c2);
         g.fillRect(50, 100, 750, 500);
         g.drawRect(50, 100, 750, 500); // outer edge
@@ -250,10 +250,10 @@ public class carAndArena extends JPanel implements KeyListener {
             }
 
             // car collison
-//            if (x == x1 && y == y1) {
-//                x = x - 20;
-//                y = y - 20;
-//            }
+            if (x == x1 && y == y1) {
+                x = x - 20;
+                y = y - 20;
+            }
 
             x = x + velX;
             y = y + velY;
@@ -437,12 +437,13 @@ public class carAndArena extends JPanel implements KeyListener {
             out = new PrintWriter(socket.getOutputStream(), true);
 
             // send the x and y value, position of the car to the server
-            
 
 
             // Consume the initial welcoming messages from the server
             for (int i = 0; i < 3; i++) {
                 System.out.println(in.readLine());
+
+                // Get the input from the server then assign to the x and y coordinate of car 1 and car 2
             }
         } catch (Exception e) {
             System.out.println("Unable to connect to game server: " + e);
