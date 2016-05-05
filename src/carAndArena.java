@@ -3,10 +3,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 import javax.swing.*;
 
-public class LogoAnimatorJPanel extends JPanel implements KeyListener {
+public class carAndArena extends JPanel implements KeyListener {
     //protected ImageIcon car1[]; // array of car1
     protected ImageIcon car1[];
     protected ImageIcon car2[];
@@ -26,7 +31,10 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
     private int velX1 = 0;
     private int velY1 = 0;
 
-    public LogoAnimatorJPanel() {
+    // Choose server
+    public JFrame frame = new JFrame("Car Game Client");
+
+    public carAndArena() {
         try {
             car1 = new ImageIcon[16];
             car2 = new ImageIcon[16];
@@ -42,7 +50,7 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-    } // end LogoAnimatorJPanel constructor
+    } // end carAndArena constructor
 
     // display current image
     public void paintComponent(Graphics g) {
@@ -285,23 +293,6 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
             carDirection(car1Image, "", 1);
         }
 
-//        if (c == KeyEvent.VK_LEFT) {
-//            velX = -1;
-//            velY = 0;
-//        }
-//        if (c == KeyEvent.VK_UP) {
-//            velX = 0;
-//            velY = -1;
-//        }
-//        if (c == KeyEvent.VK_RIGHT) {
-//            velX = 1;
-//            velY = 0;
-//        }
-//        if (c == KeyEvent.VK_DOWN) {
-//            velX = 0;
-//            velY = 1;
-//        }
-
         // Car 2
         if (c == KeyEvent.VK_W) {
             carDirection(car2Image, "up", 2);
@@ -332,8 +323,8 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
 //        velX = 0;
 //        velY = 0;
 
-        velX1 = 0;
-        velY1 = 0;
+//        velX1 = 0;
+//        velY1 = 0;
     }
 
     public void carDirection(int carImage, String type, int car) {
@@ -422,6 +413,34 @@ public class LogoAnimatorJPanel extends JPanel implements KeyListener {
         if (car == 2) {
             velX1 = x;
             velY1 = y;
+        }
+    }
+
+    public void connectToServer() throws IOException {
+        BufferedReader in;
+        PrintWriter out;
+
+        // Get the server address from a dialog box.
+        String serverAddress = JOptionPane.showInputDialog(
+                frame,
+                "Enter IP Address of the Server:",
+                "Welcome to the Capitalization Program",
+                JOptionPane.QUESTION_MESSAGE);
+
+        // Make connection and initialize streams
+        try {
+            Socket socket = new Socket(serverAddress, 9898);
+            in = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream(), true);
+
+            // Consume the initial welcoming messages from the server
+            for (int i = 0; i < 3; i++) {
+                System.out.println(in.readLine());
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to connect to game server: " + e);
+            System.exit(0);
         }
     }
 }
