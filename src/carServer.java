@@ -43,8 +43,21 @@ public class carServer {
                         new InputStreamReader(socket.getInputStream()));
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-                // Send a welcome message to the client.
+                // To client
                 out.println("Hello, you are client #" + clientNumber + ".");
+
+                // From client
+                while (true) {
+                    // get input and process
+                    String input = in.readLine();
+                    if (input == null || input.equals(".")) {
+                        break;
+                    }
+                    out.println(input.toUpperCase());
+
+                    System.out.println(input);
+                }
+
 
             } catch (Exception e) {
                 log("Error handling client# " + clientNumber + ": " + e);

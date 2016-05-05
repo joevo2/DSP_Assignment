@@ -34,6 +34,10 @@ public class carAndArena extends JPanel implements KeyListener {
     // Choose server
     public JFrame frame = new JFrame("Car Game Client");
 
+    //Server communication
+    private BufferedReader in;
+    private PrintWriter out;
+
     public carAndArena() {
         try {
             car1 = new ImageIcon[16];
@@ -108,6 +112,8 @@ public class carAndArena extends JPanel implements KeyListener {
 
     private class TimerHandler implements ActionListener {
         public void actionPerformed(ActionEvent actionEvent) {
+            out.print("hello");
+
             // collison for car1
             // outer boundary
 
@@ -417,9 +423,6 @@ public class carAndArena extends JPanel implements KeyListener {
     }
 
     public void connectToServer() throws IOException {
-        BufferedReader in;
-        PrintWriter out;
-
         // Get the server address from a dialog box.
         String serverAddress = JOptionPane.showInputDialog(
                 frame,
@@ -430,6 +433,7 @@ public class carAndArena extends JPanel implements KeyListener {
         // Make connection and initialize streams
         try {
             Socket socket = new Socket(serverAddress, 9898);
+
             in = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(), true);
