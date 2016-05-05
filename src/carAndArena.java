@@ -112,8 +112,6 @@ public class carAndArena extends JPanel implements KeyListener {
 
     private class TimerHandler implements ActionListener {
         public void actionPerformed(ActionEvent actionEvent) {
-            out.print("hello");
-
             // collison for car1
             // outer boundary
 
@@ -275,7 +273,7 @@ public class carAndArena extends JPanel implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 //		System.out.println("Key pressed code=" + e.getKeyCode() + ", char=" + e.getKeyChar());
-        System.out.println("x: " + x + ", y: " + y + ", car1Image: " + car1Image);
+//        System.out.println("x: " + x + ", y: " + y + ", car1Image: " + car1Image);
         int c = e.getKeyCode();
         if (c == KeyEvent.VK_UP) {
             carDirection(car1Image, "up", 1);
@@ -437,6 +435,10 @@ public class carAndArena extends JPanel implements KeyListener {
             in = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(), true);
+
+            // send the x and y value, position of the car to the server
+            
+
 
             // Consume the initial welcoming messages from the server
             for (int i = 0; i < 3; i++) {

@@ -9,6 +9,11 @@ import java.net.Socket;
  * Created by Joel on 05/05/2016.
  */
 public class carServer {
+    protected int car1X;
+    protected int car1Y;
+    protected int car2X;
+    protected int car2Y;
+
     public static void main(String[] args) throws Exception{
         System.out.println("Car game server is running.");
         int clientNumber = 1;
@@ -44,18 +49,23 @@ public class carServer {
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
                 // To client
-                out.println("Hello, you are client #" + clientNumber + ".");
+                out.println("Hello, you are players#" + clientNumber + ".");
 
                 // From client
                 while (true) {
                     // get input and process
                     String input = in.readLine();
-                    if (input == null || input.equals(".")) {
-                        break;
-                    }
-                    out.println(input.toUpperCase());
+                    log("Received" + input);
 
-                    System.out.println(input);
+                    // Get the input and change the velocity and position of the car
+                    if (clientNumber == 1) {
+                        // car1X = input;
+                        // car1Y = input;
+                    }
+                    if (clientNumber == 2) {
+                        // car2X = input;
+                        // car2Y = input;
+                    }
                 }
 
 
